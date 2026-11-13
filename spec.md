@@ -148,7 +148,7 @@ Vì đổi chuyến ở mức "cần khách duyệt" nên lời hứa là "AI ch
 Mở [prototype/index.html](prototype/index.html) bằng trình duyệt. HTML/CSS/JavaScript và server Python cục bộ. Dữ liệu và thao tác đặt vé đều mô phỏng. Khi cấu hình API key, AI thật phân loại ý định từ tin nhắn; server không cho model trực tiếp thực hiện thay đổi. Xem hướng dẫn trong prototype/README.md. Ảnh [lời gọi AI thật thành công](prototype/ai-call.png): tin nhắn “Ừ đổi đi” được OpenAI phân loại `CHANGE`; ứng dụng chỉ hỏi lại chuyến và hành khách, chưa giữ hay đổi chỗ.
 
 Ảnh [màn hình có đánh số](prototype/man-hinh.png):
-- **①** Chọn hành khách và chuyến · G10 (hỏi rõ khi mơ hồ) · `giu_cho_chuyen_moi` tự làm có điều kiện: chỉ giữ khi đã chọn người và chuyến đủ chỗ, giữ 20 phút, có nút huỷ giữ.
+- **①** Chọn hành khách và chuyến · G10 (hỏi rõ khi mơ hồ) · `giu_cho_chuyen_moi` cần khách duyệt bằng một chạm: chỉ giữ khi khách bấm “Giữ chỗ mô phỏng” sau khi đã chọn người và chuyến đủ chỗ; đếm ngược 20 phút, có nút huỷ giữ.
 - **②** Căn cứ từ đặt chỗ · G11 (cho biết vì sao) · `tra_cuu_dat_cho` tự làm, chỉ đọc, có ghi nguồn dữ liệu.
 - **③** Kiểm tra và quyết định · G9 (cho sửa trước khi làm) · `doi_chuyen_bay` cần khách duyệt: hiện chuyến, giờ, từng người và lượt đổi duy nhất.
 - Nút “Gặp nhân viên” · `chuyen_nhan_vien` tự làm khi khách yêu cầu. Nút “Yêu cầu hoàn vé” không gửi hoàn, mà dừng lại và hướng sang nhân viên vì thiếu thông tin hoàn (§4).
