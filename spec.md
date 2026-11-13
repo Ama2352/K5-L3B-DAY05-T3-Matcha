@@ -4,8 +4,8 @@
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-| [Hồ Nguyễn Minh Sang] | [2A202603905] | [Điền thực tế] |
-| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Phần C: dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
+| [Hồ Nguyễn Minh Sang] | [2A202603905] | Phụ trách §1: lát cắt và phạm vi; §2: kịch bản rủi ro; §6: tiêu chí Pass/Fail; §7: chuẩn bị nội dung demo; quản lý repository và merge các phần bài làm. |
+| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
 | [Nguyễn Thảo Quyên] | [2A202603895] | Viết §3 Khi AI sai (hai kịch bản "Ừ đổi đi" và "Hoàn hết đi, à khoan", câu AI nói nguyên văn, loại lỗi, HAX/PAIR G9, G10, G11 trỏ vào vùng ①②③, lỗi sửa câu chữ không cứu được) và §4 Mức tự chủ (mức và lý do theo cost-of-error cho 5 tool, tool khó xếp nhất kèm phiếu từng thành viên, thử mức trên 3 kịch bản, tách bước, lời hứa với người dùng) |
 
 ## §1. Lát cắt & phạm vi
@@ -181,6 +181,6 @@ Chấm trên **prototype mô phỏng hiện tại**, không suy rộng thành ki
 
 **Phân công khi demo:** cả ba thành viên phải trình bày và giải thích phần thực tế mình làm. Nhóm điền tên và phân công thật ở bảng đầu bài trước khi nộp; chưa giả định người phụ trách các phần còn trống.
 
-**Ca lạ thực tế và điều chỉnh sau demo:** chưa diễn ra — sau khi TA/giảng viên đưa ca, ghi nguyên tình huống, prototype đã làm hoặc nhóm đã trả lời gì, và nhóm có đổi quyết định nào hay không. Không coi ví dụ luyện tập là ca thực tế.
+**Ca luyện tập:** “Tôi chỉ cần đổi cho bé Bình sang BM 217, người lớn đi chuyến khác.” Prototype từ chối giữ chỗ khi chỉ chọn bé và thông báo trẻ đi một mình cần nhân viên kiểm tra; không đổi chuyến. Nhóm giữ quyết định chuyển nhân viên vì dữ liệu không xác nhận điều kiện trẻ bay một mình. Đây là ca chuẩn bị trước; sau buổi demo, bổ sung ca lạ thực tế do TA hoặc giảng viên đưa và ghi lại quyết định của nhóm.
 
 **Bonus theo rubric:** ảnh/log lời gọi AI thật ở quyết định chính có thể được xét +3; ảnh `prototype/ai-call.png` thể hiện nhãn `CHANGE`, không thấy API key, nhưng điểm cuối do giảng viên xác nhận. Xung phong demo trước lớp mới có thể nhận +5; chưa đánh dấu đạt trước khi sự kiện xảy ra. Tổng điểm sau cộng không vượt 100.
