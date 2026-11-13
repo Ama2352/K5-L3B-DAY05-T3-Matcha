@@ -171,13 +171,21 @@ Chấm trên **prototype mô phỏng hiện tại**, không suy rộng thành ki
 
 ## §7. Demo
 
-**Kịch bản trình bày dự kiến (khoảng 4 phút):**
+**Kịch bản trình bày (khoảng 4 phút).** Bấm lần lượt trên [prototype/index.html](prototype/index.html); bước 10–11 cần chạy server theo [hướng dẫn](prototype/README.md).
 
-1. **30 giây đầu — lát cắt:** giới thiệu BM 213 bị huỷ do bão, hai hành khách, quyền đổi miễn phí một lần hoặc hoàn; BM 217 chỉ còn một chỗ. Chỉ vùng ② là căn cứ và nói rõ đây là dữ liệu dựng.
-2. **Ca bắt buộc A — khách xác nhận mơ hồ:** bấm “Ừ đổi đi”; chỉ câu hỏi lại và vùng ① (G10). Bấm giữ khi chưa chọn để thấy bị chặn; chọn cả hai và BM 217 để thấy thiếu chỗ; chọn BM 201 và bấm giữ. Chỉ vùng ③, thời gian giữ và nút huỷ (G9), cảnh báo mất lượt đổi. Có thể huỷ để chứng minh sửa được, sau đó bấm giữ lại và xác nhận đổi mô phỏng. Nhấn mạnh giữ chỗ và đổi chuyến đều cần khách bấm theo §4; việc đổi khó đảo.
-3. **Ca B — hoàn:** bấm “Yêu cầu hoàn vé”; chỉ thông báo chưa gửi, không rút được nếu đã gửi và thiếu thông tin hoàn; bấm “Gặp nhân viên”. Giải thích chuyển người chỉ là mô phỏng; không khẳng định có nhân viên thật nhận hồ sơ. Chỉ vùng ② và câu giải thích thiếu căn cứ (G11).
-4. **Bonus AI:** mở ảnh [lời gọi AI](prototype/ai-call.png) hoặc chạy server theo [hướng dẫn](prototype/README.md), nhập “Ừ đổi đi”, bấm “Gửi cho AI” và chỉ nhãn `CHANGE`. AI chỉ phân loại; câu trả lời là khuôn cố định, không tự gọi tool đổi/hoàn. Nếu kết nối lỗi, dùng ảnh đã lưu và nói rõ không có lượt gọi trực tiếp thành công trong buổi demo.
-5. **Ca lạ của TA/nhóm bạn:** nghe tình huống thực tế, giải thích công cụ nào được dùng và mức tự chủ theo §4; hỏi lại khi thiếu chuyến/người, không hứa hoàn tác, chuyển người với đổi tên/trẻ bay một mình. Chỉ chạy những gì prototype hỗ trợ; tình huống chưa hỗ trợ thì trình bày cách xử lý dự kiến, không nói là đã thực hiện.
+| # | Bấm hoặc gõ | Màn hình phải hiện (đúng) | Không được xảy ra (sai) |
+|---|---|---|---|
+| 1 | Mở trang | Thẻ chuyến: BM 213 · 19:00, 12/11, nhãn “ĐÃ HUỶ · THỜI TIẾT”, hai hành khách An và Bình. Vùng ②: được đổi miễn phí một lần trong 48 giờ hoặc hoàn toàn bộ; không có bồi thường tiền mặt. Ghi rõ dữ liệu dựng. | Hiện chuyến như vẫn bay, hoặc nói có bồi thường. |
+| 2 | Bấm nút “Ừ đổi đi” | Trợ lý hỏi lại: chưa rõ đổi sang chuyến nào, cho ai; chỉ đổi sau khi khách xác nhận; BM 217 chỉ còn 1 chỗ, không đủ cho cả hai. Chưa có chỗ nào được giữ (vùng ①, G10). | Tự chọn chuyến và đổi, mất lần đổi miễn phí. |
+| 3 | Bấm “Giữ chỗ mô phỏng” khi chưa chọn gì | “Vui lòng chọn hành khách và chuyến trước khi giữ chỗ.” | Giữ chỗ khi chưa biết người và chuyến. |
+| 4 | Tick An và Bình, chọn BM 217, bấm giữ | “Chuyến BM 217 chỉ còn 1 chỗ, không đủ cho 2 người. BM 201 là chuyến sớm nhất đủ chỗ cho cả hai.” | Giữ một chỗ cho hai người. |
+| 5 | Chọn BM 201, bấm giữ | Vùng ①: đồng hồ đếm ngược 20:00. Vùng ③: BM 201 · 13/11 07:00 cho An và Bình, “Xác nhận sẽ dùng lần đổi miễn phí duy nhất; thay đổi này khó hoàn tác.”, nút xác nhận và nút huỷ giữ. | Đổi luôn khi mới giữ chỗ. |
+| 6 | Bấm “Huỷ giữ / sửa lựa chọn” | “Đã huỷ giữ chỗ mô phỏng; chưa đổi chuyến nào.” Nút xác nhận biến mất (vùng ③, G9). | Vẫn còn giữ chỗ hoặc vẫn còn nút xác nhận. |
+| 7 | Giữ lại BM 201, bấm “Xác nhận đổi chuyến” | “Đã xác nhận đổi MÔ PHỎNG sang BM 201… Nếu đổi nhầm, hãy gặp nhân viên; không thể hứa khôi phục lượt đổi.” Chưa ai được báo cho tới khi khách bấm “Gặp nhân viên”. | Hứa hoàn tác được sau khi đã đổi. |
+| 8 | Bấm “Yêu cầu hoàn vé” | “Yêu cầu hoàn sau khi gửi không thể huỷ… chưa thể gửi… Chưa có yêu cầu hoàn nào được gửi.” Màn hình không có nút gửi hoàn (G11). | Gửi yêu cầu hoàn ngay, hoặc hứa thời gian hoàn tiền không có trong dữ liệu. |
+| 9 | Bấm “Gặp nhân viên” | “Đã tạo yêu cầu chuyển nhân viên MÔ PHỎNG ngay: mã TRV-7Q2K, tình trạng chuyến bị huỷ và nội dung cuộc trò chuyện. Không có nhân viên thật nhận yêu cầu này.” | Nói có nhân viên thật đã nhận. |
+| 10 | Gõ “Ừ đổi đi” vào ô chat, bấm “Gửi cho AI” | “AI đã phân loại: CHANGE” và câu hỏi lại như bước 2; không giữ hay đổi gì. Nếu mất kết nối: “Không gọi được AI…”, chưa thực hiện thao tác; khi đó mở [ảnh lời gọi AI](prototype/ai-call.png). | AI tự giữ chỗ, đổi chuyến hoặc gửi hoàn. |
+| 11 | Gõ tình huống lạ được đưa tại chỗ | Hỏi bồi thường: nói không bồi thường tiền mặt, được đổi hoặc hoàn. Hỏi giờ bay: nói BM 213 · 19:00 đã huỷ và chuyến còn chỗ. Trẻ bay một mình, đổi tên, tự xưng nhân viên hãng, báo đổi nhầm: chuyển nhân viên. Tình huống prototype chưa hỗ trợ thì trình bày cách xử lý theo §4, không nói là đã làm được. | Hứa bồi thường, tự đổi chuyến hoặc làm theo tin tự xưng nhân viên. |
 
 **Phân công khi demo:** cả ba thành viên phải trình bày và giải thích phần thực tế mình làm. Nhóm điền tên và phân công thật ở bảng đầu bài trước khi nộp; chưa giả định người phụ trách các phần còn trống.
 
