@@ -5,7 +5,7 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | [Hồ Nguyễn Minh Sang] | [2A202603905] | [Điền thực tế] |
-| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | [Điền thực tế] |
+| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Phần C: dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
 | [Nguyễn Thảo Quyên] | [2A202603895] | [Điền thực tế] |
 
 ## §1. Lát cắt & phạm vi
@@ -28,3 +28,15 @@ Không làm: (1) đổi tên hành khách hoặc xử lý trẻ bay một mình 
 | J | “Mấy giờ bay?” · ① | BM 213 19:00 đã huỷ; chỉ nói giờ làm khách tưởng vẫn bay | Nói rõ giờ gốc và trạng thái huỷ, nêu nguồn đặt chỗ · sửa được |
 
 Chọn **A và B**: hành động cụ thể có thể tiêu mất quyền đổi duy nhất hoặc gửi hoàn không thể rút, ảnh hưởng trực tiếp cả hai hành khách. H suýt chọn: hậu quả cũng lớn nhưng là bước khắc phục sau sự cố; A cho thấy chốt chặn ngăn lỗi trước khi xảy ra. F có nguy cơ nghiêm trọng nhưng không có tool xử lý trẻ bay một mình nên chuyển người là ranh giới rõ hơn.
+
+## §5. Prototype
+Mở [prototype/index.html](prototype/index.html) bằng trình duyệt. HTML/CSS/JavaScript và server Python cục bộ. Dữ liệu và thao tác đặt vé đều mô phỏng. Khi cấu hình API key, AI thật phân loại ý định từ tin nhắn; server không cho model trực tiếp thực hiện thay đổi. Xem hướng dẫn trong prototype/README.md. Ảnh [lời gọi AI thật thành công](prototype/ai-call.png): tin nhắn “Ừ đổi đi” được OpenAI phân loại `CHANGE`; ứng dụng chỉ hỏi lại chuyến và hành khách, chưa giữ hay đổi chỗ.
+
+Ảnh [màn hình có đánh số](prototype/man-hinh.png):
+- **①** Chọn hành khách và chuyến · G10 (hỏi rõ khi mơ hồ) · `giu_cho_chuyen_moi` tự làm có điều kiện: chỉ giữ khi đã chọn người và chuyến đủ chỗ, giữ 20 phút, có nút huỷ giữ.
+- **②** Căn cứ từ đặt chỗ · G11 (cho biết vì sao) · `tra_cuu_dat_cho` tự làm, chỉ đọc, có ghi nguồn dữ liệu.
+- **③** Kiểm tra và quyết định · G9 (cho sửa trước khi làm) · `doi_chuyen_bay` cần khách duyệt: hiện chuyến, giờ, từng người và lượt đổi duy nhất.
+- Nút “Gặp nhân viên” · `chuyen_nhan_vien` tự làm khi khách yêu cầu. Nút “Yêu cầu hoàn vé” không gửi hoàn, mà dừng lại và hướng sang nhân viên vì thiếu thông tin hoàn (§4).
+
+Đồng hồ 20 phút là mô phỏng. Chọn căn cứ cụ thể thay vì số % chắc chắn không được kiểm định; chọn xác nhận chi tiết thay vì nút “đồng ý” chung vì cần biết chính xác chuyến và người. Nút huỷ giữ rõ ràng hơn hoàn tác sau đổi, vì đổi thật khó đảo.
+
