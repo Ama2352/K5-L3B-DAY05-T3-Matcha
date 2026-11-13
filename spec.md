@@ -60,7 +60,7 @@ Chọn **A và B**: hành động cụ thể có thể tiêu mất quyền đổ
 | Loại | Ví dụ ở T3 | Cách nói | Cách sửa |
 |---|---|---|---|
 | Ngữ cảnh | "Ừ đổi đi" (A); "à khoan" (B) | Không đổ lỗi; nói điều chưa rõ và dữ kiện có thật | Sửa thiết kế: câu chat không dẫn tới đổi hay hoàn |
-| Người dùng | Khách bấm "Yêu cầu hoàn vé" trong khi thật ra muốn đổi (nhân viên hỗ trợ trong track: "khách lỡ bấm hoàn vé, rồi muốn đổi chuyến") | Không trách; nói việc chưa làm và đường còn lại (chọn chuyến, hoặc gặp nhân viên) | Không có nút gửi hoàn nên lỡ bấm cũng không mất gì |
+| Người dùng | Khách bấm "Yêu cầu hoàn vé" trong khi thật ra muốn đổi (nhân viên hỗ trợ trong track: "khách lỡ bấm hoàn vé, rồi muốn đổi chuyến") | Không trách; nói việc chưa làm và đường còn lại (chọn chuyến, hoặc gặp nhân viên) | Bản này chưa có nút gửi hoàn, và khi có thì chữ "hoàn" trong chat không tính là xác nhận, nên lỡ bấm cũng không mất gì |
 | Hệ thống | AI nói đã đổi hoặc đã gửi khi không có quyền | Xin lỗi, nói đúng điều đã xảy ra, không hứa khôi phục | Chuyển người ngay; chặn nguyên nhân bằng cấu trúc (xem mục cuối) |
 
 ### Nguyên tắc HAX/PAIR, trỏ vào chỗ cụ thể
@@ -82,7 +82,7 @@ Lỗi "AI nói đã đổi chuyến hoặc đã gửi hoàn" khi thực tế nó
 - **Chờ thì mất gì:** mọi bước sau (giữ, đổi) dựa vào dữ liệu này. Khách nhận tin lúc 15:00, chuyến thay thế sớm nhất là 21:00 và chỉ còn 1 chỗ, nên chờ người duyệt chỉ để đọc là mất thời gian mà không chặn được gì.
 - **Loại:** cần duyệt (không có gì để chặn, vì không có thay đổi); cấm (không có lý do).
 
-### `giu_cho_chuyen_moi` — cần khách bấm một chạm
+### `giu_cho_chuyen_moi` — cần khách duyệt (bấm một chạm)
 - **Ai duyệt, thấy gì, quá hạn thì sao:** khách chọn hành khách và chuyến ở ①, bấm "Giữ chỗ mô phỏng". Họ thấy đồng hồ đếm ngược 20 phút và, ở ③, mã chuyến, giờ và từng người. Nếu khách không bấm thì không có chỗ nào được giữ; nếu đã giữ mà quá 20 phút thì chỗ tự nhả và màn hình báo hết hạn.
 - **Ai chịu gì nếu sai:** giữ nhầm nhóm hoặc nhầm chuyến thì khách mất vài phút và chiếm tạm chỗ của người khác; với BM 217 chỉ còn 1 chỗ, đó là chỗ cuối cùng.
 - **Đảo được không:** được: hết 20 phút tự nhả, hoặc khách bấm "Huỷ giữ / sửa lựa chọn".
@@ -97,13 +97,15 @@ Lỗi "AI nói đã đổi chuyến hoặc đã gửi hoàn" khi thực tế nó
 - **Chờ thì mất gì:** chờ khách bấm xác nhận gần như không mất gì, vì khách là người đang cần; chờ nhân viên thì mất chỗ ở chuyến còn ít chỗ.
 - **Loại:** *tự làm* (sai là mất quyền đổi, không phục hồi được); *nhân viên duyệt* (khách có đủ thông tin để tự xác nhận ở ③, còn chờ người chỉ làm hết chỗ); *cấm* (bắt mọi ca đổi đi qua nhân viên, khách chờ vô ích).
 
-### `gui_yeu_cau_hoan_ve` — cấm với AI (chỉ nhân viên xử lý)
+### `gui_yeu_cau_hoan_ve` — cần khách duyệt (khi đủ thông tin; bản này dừng ở chuyển người)
 - **Ai chịu gì nếu sai:** khách mất cả chỗ lẫn quyền đổi; Bối cảnh track nói tiền có thể về chậm tới 90 ngày trên sản phẩm thật. Nhân viên hỗ trợ trong track: ca khó nhất là khách lỡ bấm hoàn rồi muốn đổi.
 - **Đảo được không:** không: gửi rồi không huỷ được.
 - **Chờ thì mất gì:** dữ liệu chỉ nêu mốc 48 giờ cho việc đổi, không nêu hạn cho hoàn, nên chờ nhân viên là chấp nhận được. Khác với đổi chuyến.
-- **Vì sao cấm chứ không phải "cần duyệt":** một nút xác nhận chỉ chặn được lỗi khi khách biết mình xác nhận điều gì. Rubric riêng T3 đòi nói rõ tiền về đâu và mất bao lâu trước khi gửi, nhưng dữ liệu đặt chỗ dựng không có hai thông tin đó. Kịch bản B cho thấy khách còn đổi ý ngay trong câu. Nên màn hình không có nút gửi hoàn; nút "Yêu cầu hoàn vé" chỉ giải thích và dẫn tới "Gặp nhân viên".
-- **Loại:** *tự làm* (không đảo được); *cần khách duyệt* (xác nhận không có nội dung để xác nhận, như trên).
-- **Điều kiện mở khoá:** khi dữ liệu đặt chỗ có đích hoàn và thời gian hoàn, mức này lên "cần khách duyệt", ở màn hình hiện hai thông tin đó cùng dòng "gửi rồi không huỷ được". Bản này chưa làm.
+- **Ai duyệt, thấy gì, quá hạn thì sao:** khách duyệt. Trước khi bấm, khách phải thấy hành khách nào được hoàn, tiền về đâu, mất bao lâu và dòng "gửi rồi không huỷ được" (rubric riêng T3, mục 2). Không có hạn: khách không bấm thì không có gì được gửi.
+- **Điều kiện tiên quyết:** bước xác nhận chỉ hiện khi dữ liệu đặt chỗ có đích hoàn và thời gian hoàn. Dữ liệu dựng không có hai thông tin đó, nên ở prototype hiện tại AI dừng ở "chưa thể gửi" và chuyển người. Chưa có màn hình xác nhận hoàn; đây là giới hạn đã biết.
+- **Quy tắc kèm theo:** chữ "hoàn" trong chat không bao giờ là xác nhận; chỉ nút xác nhận có đủ nội dung ở trên mới tính. Đây là cách chặn kịch bản B ("à khoan") và ca "lỡ bấm hoàn rồi muốn đổi" của nhân viên.
+- **Vì sao duyệt chứ không cấm:** hoàn toàn bộ là một trong hai quyền khách có theo chính sách Bay Mẫu. Cấm hẳn thì mọi ca hoàn đều phải qua nhân viên kể cả khi dữ liệu đã đủ, khách chờ vô ích. Lỗi cần chặn là xác nhận mơ hồ, và chặn được bằng một bước xác nhận có đủ nội dung, không cần cấm.
+- **Loại:** *tự làm* (không đảo được, và "à khoan" cho thấy khách đổi ý ngay trong câu); *cấm* (như trên).
 
 ### `chuyen_nhan_vien` — tự làm
 - **Ai chịu gì nếu sai:** chuyển thừa thì nhân viên tốn công một ca không cần và khách chờ thay vì tự xong; chuyển thiếu (trẻ bay một mình, đổi tên, tin tự xưng nhân viên, đổi nhầm) thì nặng hơn nhiều. Vì thế nhóm chấp nhận chuyển thừa; model nhãn lạ cũng mặc định về chuyển người.
@@ -112,30 +114,32 @@ Lỗi "AI nói đã đổi chuyến hoặc đã gửi hoàn" khi thực tế nó
 - **Khách thấy gì:** thông báo mô phỏng nêu mã TRV-7Q2K, tình trạng chuyến bị huỷ và nội dung cuộc trò chuyện.
 - **Loại:** *cần khách duyệt* (chậm với ca khẩn); *cấm* (không có lý do, vì đây là đường lui của mọi lỗi).
 
-### Tool khó xếp nhất: `giu_cho_chuyen_moi`
-- **Các phương án:** tự làm; cần khách bấm một chạm; cần nhân viên duyệt.
+### Tool khó xếp nhất: `gui_yeu_cau_hoan_ve` (cần duyệt hay cấm)
+- **Phiếu từng thành viên:**
+  - Nguyễn Thảo Quyên: cần khách duyệt cho hoàn vé. Cả 5 tool: tra cứu tự làm; giữ chỗ khách bấm một chạm; đổi chuyến cần duyệt; hoàn cần duyệt; chuyển nhân viên tự làm.
+  - Hồ Nguyễn Minh Sang: chọn "cấm" là khó nhất với hoàn vé; đồng ý với mức đã ghi cho cả 5 tool.
+  - Vũ Ngọc Quỳnh Anh: chọn "cấm" là khó nhất với hoàn vé; đồng ý với mức đã ghi cho cả 5 tool.
 - **Cái giá của mỗi phía:**
-  - *Tự làm* (kịch bản A): "Ừ đổi đi" không nói người và chuyến; AI tự giữ thì giữ nhầm, chiếm chỗ cuối ở BM 217 và khách thấy đếm ngược cho thứ mình không chọn.
-  - *Nhân viên duyệt* (Bối cảnh track): chờ người thì "chuyến tốt nhất hết chỗ trong lúc chờ"; chuyến thay thế chỉ còn 1, 9, 4 chỗ.
-  - *Khách bấm một chạm*: thêm một lần bấm cho khách đang vội ("đừng bắt tôi bấm qua mười màn hình") nhưng không chiếm chỗ khi chưa biết khách chọn gì.
-- **Nhóm chốt:** khách bấm một chạm, kèm luật điều kiện giữ.
-- **Phiếu từng thành viên (chưa điền, không bịa):** [B: ghi lựa chọn của mình] · [A: hỏi A] · [C: hỏi C]. Ghi từng người xếp tool nào vào mức nào, và có đồng ý chốt trên không.
-- **Cũng đáng bàn:** `gui_yeu_cau_hoan_ve` (cấm hay cần duyệt), vì cả hai đều có giá; lập luận ở mục tool đó.
+  - *Cấm*: khách muốn hoàn thật vẫn phải chờ nhân viên cho mọi ca, kể cả khi dữ liệu đã đủ; trong khi hoàn toàn bộ là quyền theo chính sách Bay Mẫu. Mất đúng điều Bối cảnh track chê: bắt khách chờ người cho mọi việc.
+  - *Cần duyệt*: kịch bản B ("Hoàn hết đi, à khoan") và lời nhân viên trong track ("khách lỡ bấm hoàn vé, rồi muốn đổi chuyến") cho thấy một bước xác nhận vẫn có thể bị bấm lỡ nếu nội dung mơ hồ; và hoàn không đảo được. Dữ liệu dựng còn thiếu đích hoàn và thời gian, nên hôm nay chưa có gì đủ để xác nhận.
+- **Nhóm chốt (cả ba người đồng ý):** cần khách duyệt, kèm điều kiện tiên quyết và quy tắc "chữ hoàn trong chat không bao giờ là xác nhận". Với dữ liệu hiện có, điều kiện chưa thoả nên AI dừng và chuyển người. Lý do chọn duyệt thay vì cấm: cái cần chặn là xác nhận thiếu nội dung, không phải quyền hoàn của khách.
+- **Tool khó thứ hai:** `giu_cho_chuyen_moi`. *Tự làm* thì AI đoán người và chuyến từ "Ừ đổi đi" (kịch bản A), giữ nhầm và chiếm chỗ cuối ở BM 217. *Nhân viên duyệt* thì chờ người, chuyến còn 1, 9, 4 chỗ có thể hết (Bối cảnh track). Chốt: khách bấm một chạm.
 
 ### Thử mức đã đặt trên ba kịch bản
 | | Cái sai có bị chặn không | Còn việc nào AI làm khi lẽ ra phải hỏi | Người dùng có phải chờ vô ích không |
 |---|---|---|---|
 | **A** "Ừ đổi đi" | Có: không có đường tới đổi khi chưa chọn; không giữ khi thiếu người hoặc chuyến, vượt số chỗ, hoặc trẻ đi một mình; không đổi khi chưa xác nhận hoặc đã hết hạn giữ. | Có một lỗ hổng đã biết: khách chọn chỉ An và BM 217 thì vẫn giữ được, tách Bình khỏi chuyến mà không hỏi, và ③ không nhắc Bình chưa được đổi. | Không: một câu hỏi lại là cần thiết, vì tin nhắn chưa đủ thông tin. |
-| **B** "Hoàn hết đi, à khoan" | Có: không có đường nào gửi hoàn. | Có một lỗ hổng đã biết: khi khách bấm "Yêu cầu hoàn vé", prototype nhả luôn chỗ đang giữ mà câu chữ không nói. Khách vừa đổi ý "à khoan" có thể mất chỗ giữ mà không biết. | Có, một chút, và đó là chờ cần thiết: chuyển nhân viên thay vì tự gửi; hoàn không có hạn nêu trong dữ liệu. |
+| **B** "Hoàn hết đi, à khoan" | Có: chưa có đường gửi vì dữ liệu thiếu đích hoàn và thời gian; kể cả khi đủ thì chỉ gửi sau khi khách bấm xác nhận, và chữ "hoàn" trong chat không tính. | Có một lỗ hổng đã biết: khi khách bấm "Yêu cầu hoàn vé", prototype nhả luôn chỗ đang giữ mà câu chữ không nói. Khách vừa đổi ý "à khoan" có thể mất chỗ giữ mà không biết. | Có, một chút, và đó là chờ cần thiết: chuyển nhân viên thay vì tự gửi; hoàn không có hạn nêu trong dữ liệu. |
 | **Bình thường:** khách chọn An, Bình và BM 201 | Không cần chặn gì. | Không: giữ chỉ sau khi khách bấm; đổi chỉ sau xác nhận ở ③. | Không chờ nhân viên; khách bấm hai lần (giữ chỗ, xác nhận). Một điểm thừa: nếu khách gõ "Ừ đổi đi" sau khi đã chọn đủ, prototype vẫn hỏi lại. |
 
-Hai lỗ hổng ở cột giữa được ghi nhận để C quyết định có sửa không; nếu sửa thì cập nhật bảng này.
+Hai lỗ hổng ở cột giữa là giới hạn của prototype hiện tại.
 
 ### Luật thêm và tách bước
 - **Luật 1:** chỉ giữ chỗ khi đã biết số người, chuyến còn đủ chỗ cho số người đó, và không để trẻ đi một mình. Lý do: kịch bản A, D và F.
 - **Luật 2:** đổi bất kỳ lựa chọn nào thì chỗ đang giữ tự huỷ. Lý do: tránh xác nhận đổi cho một lựa chọn khách không còn muốn.
 - **Luật 3:** AI chỉ phân loại, không gọi tool; không chắc thì chuyển người. Lý do: kịch bản B, G và H, nơi lỗi nằm ở việc AI hành động khi lẽ ra không được.
+- **Luật 4:** chỉ hiện bước xác nhận hoàn khi dữ liệu có đích hoàn và thời gian hoàn; chữ "hoàn" trong chat không bao giờ là xác nhận. Lý do: kịch bản B và lời nhân viên trong track.
 - **Tách bước:** bước "xem lại" ở ③ tách khỏi bước "xác nhận đổi" (soạn sẵn tách khỏi gửi đi). Nhờ vậy khách thấy mã chuyến, giờ, từng người và cái giá của lần đổi trước khi bấm, chặn được kịch bản A.
 
 ### Mức tự chủ đã đổi lời hứa nào
-Vì đổi chuyến ở mức "cần khách duyệt" nên lời hứa là "AI chuẩn bị và hiện đủ thông tin; bạn bấm xác nhận", không phải "AI tự đổi cho bạn". Vì hoàn vé ở mức cấm nên lời hứa là "AI không bao giờ tự gửi yêu cầu hoàn; AI chỉ giải thích và chuyển người", thay cho lời hứa "AI hoàn vé cho bạn".
+Vì đổi chuyến ở mức "cần khách duyệt" nên lời hứa là "AI chuẩn bị và hiện đủ thông tin; bạn bấm xác nhận", không phải "AI tự đổi cho bạn". Vì hoàn vé ở mức cần duyệt nên lời hứa là "AI không bao giờ tự gửi yêu cầu hoàn; chỉ gửi khi bạn bấm xác nhận sau khi đã thấy tiền về đâu và mất bao lâu", thay cho "AI hoàn vé cho bạn". Với dữ liệu hiện tại AI chưa đủ thông tin nên chỉ giải thích và chuyển người.
