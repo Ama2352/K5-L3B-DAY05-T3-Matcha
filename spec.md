@@ -5,7 +5,7 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | [Hồ Nguyễn Minh Sang] | [2A202603905] | [Điền thực tế] |
-| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Phần C: dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
+| [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
 | [Nguyễn Thảo Quyên] | [2A202603895] | [Điền thực tế] |
 
 ## §1. Lát cắt & phạm vi
