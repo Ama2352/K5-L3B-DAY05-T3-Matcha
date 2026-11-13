@@ -6,7 +6,7 @@
 |---|---|---|
 | [Hồ Nguyễn Minh Sang] | [2A202603905] | [Điền thực tế] |
 | [Vũ Ngọc Quỳnh Anh] | [2A202603875] | Dựng prototype `prototype/index.html` và ảnh đánh số `man-hinh.png`; lời gọi AI thật phân loại ý định qua `server.py` (OpenAI, key để trong `.env`, không commit); viết §5 |
-| [Nguyễn Thảo Quyên] | [2A202603895] | [Điền thực tế] |
+| [Nguyễn Thảo Quyên] | [2A202603895] | Viết §3 Khi AI sai (hai kịch bản "Ừ đổi đi" và "Hoàn hết đi, à khoan", câu AI nói nguyên văn, loại lỗi, HAX/PAIR G9, G10, G11 trỏ vào vùng ①②③, lỗi sửa câu chữ không cứu được) và §4 Mức tự chủ (mức và lý do theo cost-of-error cho 5 tool, tool khó xếp nhất kèm phiếu từng thành viên, thử mức trên 3 kịch bản, tách bước, lời hứa với người dùng) |
 
 ## §1. Lát cắt & phạm vi
 Trong Đặt chỗ của tôi, khi hành khách vừa nhận tin chuyến bay bị huỷ và nhắn hỏi, AI đề xuất và giữ chỗ chuyến thay thế, hỏi lại cho rõ, đổi vé, hay chuyển nhân viên, để khách tới nơi kịp mà không mất vé hay tiền vì một thao tác không đảo lại được.
