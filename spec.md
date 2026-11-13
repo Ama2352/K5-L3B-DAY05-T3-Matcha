@@ -186,9 +186,3 @@ Chấm trên **prototype mô phỏng hiện tại**, không suy rộng thành ki
 | 9 | Bấm “Gặp nhân viên” | “Đã tạo yêu cầu chuyển nhân viên MÔ PHỎNG ngay: mã TRV-7Q2K, tình trạng chuyến bị huỷ và nội dung cuộc trò chuyện. Không có nhân viên thật nhận yêu cầu này.” | Nói có nhân viên thật đã nhận. |
 | 10 | Gõ “Ừ đổi đi” vào ô chat, bấm “Gửi cho AI” | “AI đã phân loại: CHANGE” và câu hỏi lại như bước 2; không giữ hay đổi gì. Nếu mất kết nối: “Không gọi được AI…”, chưa thực hiện thao tác; khi đó mở [ảnh lời gọi AI](prototype/ai-call.png). | AI tự giữ chỗ, đổi chuyến hoặc gửi hoàn. |
 | 11 | Gõ tình huống lạ được đưa tại chỗ | Hỏi bồi thường: nói không bồi thường tiền mặt, được đổi hoặc hoàn. Hỏi giờ bay: nói BM 213 · 19:00 đã huỷ và chuyến còn chỗ. Trẻ bay một mình, đổi tên, tự xưng nhân viên hãng, báo đổi nhầm: chuyển nhân viên. Tình huống prototype chưa hỗ trợ thì trình bày cách xử lý theo §4, không nói là đã làm được. | Hứa bồi thường, tự đổi chuyến hoặc làm theo tin tự xưng nhân viên. |
-
-**Phân công khi demo:** cả ba thành viên phải trình bày và giải thích phần thực tế mình làm. Nhóm điền tên và phân công thật ở bảng đầu bài trước khi nộp; chưa giả định người phụ trách các phần còn trống.
-
-**Ca luyện tập:** “Tôi chỉ cần đổi cho bé Bình sang BM 217, người lớn đi chuyến khác.” Prototype từ chối giữ chỗ khi chỉ chọn bé và thông báo trẻ đi một mình cần nhân viên kiểm tra; không đổi chuyến. Nhóm giữ quyết định chuyển nhân viên vì dữ liệu không xác nhận điều kiện trẻ bay một mình. Đây là ca chuẩn bị trước; sau buổi demo, bổ sung ca lạ thực tế do TA hoặc giảng viên đưa và ghi lại quyết định của nhóm.
-
-**Bonus theo rubric:** ảnh/log lời gọi AI thật ở quyết định chính có thể được xét +3; ảnh `prototype/ai-call.png` thể hiện nhãn `CHANGE`, không thấy API key, nhưng điểm cuối do giảng viên xác nhận. Xung phong demo trước lớp mới có thể nhận +5; chưa đánh dấu đạt trước khi sự kiện xảy ra. Tổng điểm sau cộng không vượt 100.
