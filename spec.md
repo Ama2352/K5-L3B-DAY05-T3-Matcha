@@ -1,4 +1,4 @@
-# Bài nộp LAB5 — T3 Du lịch · Nhóm: [điền tên nhóm]
+# Bài nộp LAB5 — T3 Du lịch · Nhóm: Matcha
 
 **Lớp:** [L3B] · **Bàn / zone:** [điền] · **Track:** T3
 
@@ -148,9 +148,39 @@ Vì đổi chuyến ở mức "cần khách duyệt" nên lời hứa là "AI ch
 Mở [prototype/index.html](prototype/index.html) bằng trình duyệt. HTML/CSS/JavaScript và server Python cục bộ. Dữ liệu và thao tác đặt vé đều mô phỏng. Khi cấu hình API key, AI thật phân loại ý định từ tin nhắn; server không cho model trực tiếp thực hiện thay đổi. Xem hướng dẫn trong prototype/README.md. Ảnh [lời gọi AI thật thành công](prototype/ai-call.png): tin nhắn “Ừ đổi đi” được OpenAI phân loại `CHANGE`; ứng dụng chỉ hỏi lại chuyến và hành khách, chưa giữ hay đổi chỗ.
 
 Ảnh [màn hình có đánh số](prototype/man-hinh.png):
-- **①** Chọn hành khách và chuyến · G10 (hỏi rõ khi mơ hồ) · `giu_cho_chuyen_moi` tự làm có điều kiện: chỉ giữ khi đã chọn người và chuyến đủ chỗ, giữ 20 phút, có nút huỷ giữ.
+- **①** Chọn hành khách và chuyến · G10 (hỏi rõ khi mơ hồ) · `giu_cho_chuyen_moi` cần khách duyệt: khách chọn người và chuyến đủ chỗ rồi bấm giữ; giữ 20 phút, có nút huỷ giữ (§4).
 - **②** Căn cứ từ đặt chỗ · G11 (cho biết vì sao) · `tra_cuu_dat_cho` tự làm, chỉ đọc, có ghi nguồn dữ liệu.
 - **③** Kiểm tra và quyết định · G9 (cho sửa trước khi làm) · `doi_chuyen_bay` cần khách duyệt: hiện chuyến, giờ, từng người và lượt đổi duy nhất.
 - Nút “Gặp nhân viên” · `chuyen_nhan_vien` tự làm khi khách yêu cầu. Nút “Yêu cầu hoàn vé” không gửi hoàn, mà dừng lại và hướng sang nhân viên vì thiếu thông tin hoàn (§4).
 
 Đồng hồ 20 phút là mô phỏng. Chọn căn cứ cụ thể thay vì số % chắc chắn không được kiểm định; chọn xác nhận chi tiết thay vì nút “đồng ý” chung vì cần biết chính xác chuyến và người. Nút huỷ giữ rõ ràng hơn hoàn tác sau đổi, vì đổi thật khó đảo.
+
+## §6. Tốt là gì — ba tiêu chí Pass/Fail
+
+Chấm trên **prototype mô phỏng hiện tại**, không suy rộng thành kiểm thử hệ thống đặt vé thật. Hai ca A và B là hai ca đắt nhất ở §2. Kiểm tra bằng các nút kịch bản có sẵn; kết quả không chứng minh model phân loại đúng mọi câu tự do.
+
+| Tiêu chí có thể kiểm tra | A — “Ừ đổi đi” | B — “Hoàn hết đi, à khoan” |
+|---|---|---|
+| **1. Không đổi khi chưa có xác nhận rõ:** sau khi mở tình huống, chưa có nút xác nhận đổi; chỉ sau khi khách chọn hành khách, chuyến đủ chỗ và bấm giữ, màn hình mới hiện đúng mã chuyến, giờ, từng người và cảnh báo dùng lượt đổi duy nhất trước nút xác nhận. **Fail** nếu đổi sớm, cho giữ khi thiếu lựa chọn hoặc không đủ chỗ, hoặc thiếu thông tin này. | **Pass:** nút “Ừ đổi đi” hỏi lại; giữ khi chưa chọn bị chặn; chọn cả hai với BM 217 bị chặn; chọn hai người với BM 201 rồi bấm giữ mới hiện tóm tắt và nút xác nhận. | **Pass:** bấm “Yêu cầu hoàn vé” không đổi chuyến hay hiện nút xác nhận đổi khi chưa giữ. |
+| **2. Không gửi hoàn khi không đủ thông tin:** bấm “Yêu cầu hoàn vé” phải báo yêu cầu chưa được gửi, nói không thể huỷ sau khi gửi và thiếu đích/thời gian hoàn; không có nút gửi hoàn. **Fail** nếu gửi, hứa thông tin không có hoặc không nói trạng thái. | **Pass:** trong luồng A không có thao tác gửi hoàn; nút gửi hoàn không có trên màn hình. | **Pass:** thông báo đủ các điều kiện trên và không có nút gửi hoàn. |
+| **3. Có căn cứ và đường lui:** màn hình phải hiện chuyến BM 213 bị huỷ do thời tiết, căn cứ đổi/hoàn và nút “Gặp nhân viên”; khi đã giữ ở A phải huỷ giữ được trước khi đổi. **Fail** nếu thiếu một điều kiện áp dụng. | **Pass:** có căn cứ và nút gặp nhân viên; sau khi giữ BM 201, bấm “Huỷ giữ / sửa lựa chọn” thì nút xác nhận đổi biến mất. | **Pass:** căn cứ vẫn hiện; có nút “Gặp nhân viên”, bấm hiện thông báo chuyển **mô phỏng**. |
+
+**Cách kiểm:** đã bấm kiểm tra tại trình duyệt các bước trong bảng, gồm chặn thiếu lựa chọn và thiếu chỗ, giữ/hủy BM 201, luồng hoàn và nút gặp nhân viên. Không chạy lại lời gọi AI trả phí trong lượt kiểm tra này; ảnh `prototype/ai-call.png` là bằng chứng nhóm đã lưu cho một lời gọi trước đó.
+
+**Lỗi/giới hạn còn lại:** chưa có gửi hoàn hoặc chuyển nhân viên thật; dòng chuyển nhân viên chỉ là thông báo mô phỏng, không chứng minh có hồ sơ hay hội thoại được gửi. Tình trạng ghế và chính sách là dữ liệu cố định. Kết quả phân loại câu tự do phụ thuộc model; chỉ một ảnh `CHANGE` không chứng minh các ca khác đều đúng. Kiểm soát nằm ở trình duyệt, chưa có cơ chế kiểm tra giao dịch phía máy chủ; vì vậy các Pass trên chỉ áp dụng cho thao tác mô phỏng đã thử.
+
+## §7. Demo
+
+**Kịch bản trình bày dự kiến (khoảng 4 phút):**
+
+1. **30 giây đầu — lát cắt:** giới thiệu BM 213 bị huỷ do bão, hai hành khách, quyền đổi miễn phí một lần hoặc hoàn; BM 217 chỉ còn một chỗ. Chỉ vùng ② là căn cứ và nói rõ đây là dữ liệu dựng.
+2. **Ca bắt buộc A — khách xác nhận mơ hồ:** bấm “Ừ đổi đi”; chỉ câu hỏi lại và vùng ① (G10). Bấm giữ khi chưa chọn để thấy bị chặn; chọn cả hai và BM 217 để thấy thiếu chỗ; chọn BM 201 và bấm giữ. Chỉ vùng ③, thời gian giữ và nút huỷ (G9), cảnh báo mất lượt đổi. Có thể huỷ để chứng minh sửa được, sau đó bấm giữ lại và xác nhận đổi mô phỏng. Nhấn mạnh giữ chỗ và đổi chuyến đều cần khách bấm theo §4; việc đổi khó đảo.
+3. **Ca B — hoàn:** bấm “Yêu cầu hoàn vé”; chỉ thông báo chưa gửi, không rút được nếu đã gửi và thiếu thông tin hoàn; bấm “Gặp nhân viên”. Giải thích chuyển người chỉ là mô phỏng; không khẳng định có nhân viên thật nhận hồ sơ. Chỉ vùng ② và câu giải thích thiếu căn cứ (G11).
+4. **Bonus AI:** mở ảnh [lời gọi AI](prototype/ai-call.png) hoặc chạy server theo [hướng dẫn](prototype/README.md), nhập “Ừ đổi đi”, bấm “Gửi cho AI” và chỉ nhãn `CHANGE`. AI chỉ phân loại; câu trả lời là khuôn cố định, không tự gọi tool đổi/hoàn. Nếu kết nối lỗi, dùng ảnh đã lưu và nói rõ không có lượt gọi trực tiếp thành công trong buổi demo.
+5. **Ca lạ của TA/nhóm bạn:** nghe tình huống thực tế, giải thích công cụ nào được dùng và mức tự chủ theo §4; hỏi lại khi thiếu chuyến/người, không hứa hoàn tác, chuyển người với đổi tên/trẻ bay một mình. Chỉ chạy những gì prototype hỗ trợ; tình huống chưa hỗ trợ thì trình bày cách xử lý dự kiến, không nói là đã thực hiện.
+
+**Phân công khi demo:** cả ba thành viên phải trình bày và giải thích phần thực tế mình làm. Nhóm điền tên và phân công thật ở bảng đầu bài trước khi nộp; chưa giả định người phụ trách các phần còn trống.
+
+**Ca lạ thực tế và điều chỉnh sau demo:** chưa diễn ra — sau khi TA/giảng viên đưa ca, ghi nguyên tình huống, prototype đã làm hoặc nhóm đã trả lời gì, và nhóm có đổi quyết định nào hay không. Không coi ví dụ luyện tập là ca thực tế.
+
+**Bonus theo rubric:** ảnh/log lời gọi AI thật ở quyết định chính có thể được xét +3; ảnh `prototype/ai-call.png` thể hiện nhãn `CHANGE`, không thấy API key, nhưng điểm cuối do giảng viên xác nhận. Xung phong demo trước lớp mới có thể nhận +5; chưa đánh dấu đạt trước khi sự kiện xảy ra. Tổng điểm sau cộng không vượt 100.
