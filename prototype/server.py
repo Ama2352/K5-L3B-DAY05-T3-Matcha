@@ -1,8 +1,7 @@
 import json, os, urllib.request, urllib.error
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
-ROOT=Path(__file__).resolve().parent
-ENV=ROOT.parent / '.env'
+ROOT=Path(__file__).resolve().parent; ENV=ROOT.parent / '.env'
 for line in (ENV.read_text(encoding='utf-8-sig').splitlines() if ENV.exists() else []):
     if '=' in line and not line.lstrip().startswith('#'):
         k,v=line.split('=',1); os.environ.setdefault(k.strip(),v.strip().strip('"').strip("'"))
